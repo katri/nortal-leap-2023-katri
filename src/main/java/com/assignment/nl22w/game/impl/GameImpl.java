@@ -13,6 +13,7 @@ public class GameImpl implements Game {
 
 	@Override
 	public int escapeFromTheWoods(Resource resource) throws IOException {
+		System.out.println(-1);
 		//		TODO start your journey here
 
 		return -1;
