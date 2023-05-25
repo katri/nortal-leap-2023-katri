@@ -15,10 +15,7 @@ public class GameController {
         Game game = new GameImpl();
 
         MyResource resource = new MyResource();
-        char [][] map = resource.readFile();
 
-
-        game.escapeFromTheWoods(resource);
-        return 77;
+        return game.escapeFromTheWoods(resource);
     }
 }
