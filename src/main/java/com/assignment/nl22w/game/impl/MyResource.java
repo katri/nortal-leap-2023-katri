@@ -12,6 +12,16 @@ import java.util.Scanner;
 
 public class MyResource implements Resource {
 
+
+    private char[][] mapFile;
+    public char[][] getMapFile() {
+        return mapFile;
+    }
+
+    public void setMapFile(char[][] mapFile) {
+        this.mapFile = readFile();
+    }
+
     public char[][] readFile() {
         File file = new File("src/main/resources/map1.txt");
 
