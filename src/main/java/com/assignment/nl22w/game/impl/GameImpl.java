@@ -65,10 +65,7 @@ public class GameImpl implements Game {
             if (edgeNumbers.get(i) > edgeNumbers.get(i + 1)) {
                 minValue = edgeNumbers.get(i + 1);
             }
-
-
         }
-
         return minValue - 1;
     }
 
@@ -84,25 +81,8 @@ public class GameImpl implements Game {
                 }
             }
         }
-
         return new int[]{x, y};
     }
-
-//    private int[][] updateMapCharacters(int[][] mapFile) {
-//        for (int i = 0; i < mapFile.length; i++) {
-//            for (int j = 0; j < mapFile[i].length; j++) {
-//                if (mapFile[i][j] == '1') {
-//                    mapFile[i][j] = 'B';
-//                }
-//                if (mapFile[i][j] == 'X') {
-//                    mapFile[i][j] = '0';
-//                }
-//
-//
-//            }
-//        }
-//        return mapFile;
-//    }
 
     private int[][] fillMap(int[][] mapFile) {
         int[] startCoordinates = findStart(mapFile);
@@ -110,14 +90,7 @@ public class GameImpl implements Game {
         int jValue = startCoordinates[1];
         int value = 1;
 
-        int countOfEmpties = 0;
-        for (int i = 0; i < mapFile.length; i++) {
-            for (int j = 0; j < mapFile[i].length; j++) {
-                if (mapFile[i][j] == 0) {
-                    countOfEmpties++;
-                }
-            }
-        }
+        int countOfEmpties = getCountOfEmpties(mapFile);
 
         while (countOfEmpties > 0) {
 
@@ -125,8 +98,8 @@ public class GameImpl implements Game {
                 for (int j = 0; j < mapFile[i].length; j++) {
                     int ourCharValue = mapFile[i][j];
                     if (ourCharValue == value
-                            && 0 < i && i < mapFile.length
-                            && 0 < j && j < mapFile[i].length) {
+                            && 0 < i && i < mapFile.length - 1
+                            && 0 < j && j < mapFile[i].length - 1) {
                         if (mapFile[i - 1][j] == 0) {
                             mapFile[i - 1][j] = value + 1;
                         }
@@ -142,27 +115,21 @@ public class GameImpl implements Game {
                     }
                 }
             }
-            countOfEmpties = 0;
+            countOfEmpties = getCountOfEmpties(mapFile);
             value++;
+        }
+        return mapFile;
+    }
 
-            for (int i = 0; i < mapFile.length; i++) {
-                for (int j = 0; j < mapFile[i].length; j++) {
-                    if (mapFile[i][j] == 0) {
-                        countOfEmpties++;
-                    }
+    private static int getCountOfEmpties(int[][] mapFile) {
+        int countOfEmpties = 0;
+        for (int i = 0; i < mapFile.length; i++) {
+            for (int j = 0; j < mapFile[i].length; j++) {
+                if (mapFile[i][j] == 0) {
+                    countOfEmpties++;
                 }
             }
         }
-
-//
-////        fillLeft(mapFile[iValue - 1][jValue], value);
-////        fillRight(mapFile);
-////        fillTop(mapFile);
-////        fillBottom(mapFile);
-//
-//
-        return mapFile;
+        return countOfEmpties;
     }
-//
-
 }

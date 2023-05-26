@@ -23,7 +23,7 @@ public class MyResource implements Resource {
     }
 
     public int[][] readFile() {
-        File file = new File("src/main/resources/map1.txt");
+        File file = new File("src/main/resources/map2.txt");
 
         Scanner scanner;
         try {
@@ -67,32 +67,32 @@ public class MyResource implements Resource {
     }
 
     @Override
-    public URL getURL() throws IOException {
+    public URL getURL() {
         return null;
     }
 
     @Override
-    public URI getURI() throws IOException {
+    public URI getURI() {
         return null;
     }
 
     @Override
-    public File getFile() throws IOException {
+    public File getFile() {
         return null;
     }
 
     @Override
-    public long contentLength() throws IOException {
+    public long contentLength() {
         return 0;
     }
 
     @Override
-    public long lastModified() throws IOException {
+    public long lastModified() {
         return 0;
     }
 
     @Override
-    public Resource createRelative(String relativePath) throws IOException {
+    public Resource createRelative(String relativePath) {
         return null;
     }
 
@@ -107,7 +107,7 @@ public class MyResource implements Resource {
     }
 
     @Override
-    public InputStream getInputStream() throws IOException {
+    public InputStream getInputStream() {
         return null;
     }
 }
