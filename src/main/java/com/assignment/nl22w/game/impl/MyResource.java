@@ -17,7 +17,7 @@ public class MyResource implements Resource {
         return mapFile;
     }
 
-    public void setMapFile(int[][] mapFile) {
+    public void setMapFile() {
         this.mapFile = readFile();
     }
 
@@ -110,8 +110,3 @@ public class MyResource implements Resource {
         return null;
     }
 }
-
-
-
-
-

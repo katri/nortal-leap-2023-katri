@@ -15,7 +15,7 @@ public class GameController {
         Game game = new GameImpl();
 
         MyResource resource = new MyResource();
-        resource.setMapFile(resource.getMapFile());
+        resource.setMapFile();
 
         return game.escapeFromTheWoods(resource);
     }
