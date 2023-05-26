@@ -69,25 +69,7 @@ public class GameImpl implements Game {
         return minValue - 1;
     }
 
-    private int[] findStart(int[][] map) {
-        int x = 0;
-        int y = 0;
-
-        for (int i = 0; i < map.length; i++) {
-            for (int j = 0; j < map[i].length; j++) {
-                if (map[i][j] == 1) {
-                    x = i;
-                    y = j;
-                }
-            }
-        }
-        return new int[]{x, y};
-    }
-
     private int[][] fillMap(int[][] mapFile) {
-        int[] startCoordinates = findStart(mapFile);
-        int iValue = startCoordinates[0];
-        int jValue = startCoordinates[1];
         int value = 1;
 
         int countOfEmpties = getCountOfEmpties(mapFile);
