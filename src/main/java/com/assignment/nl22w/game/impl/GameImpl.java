@@ -123,9 +123,9 @@ public class GameImpl implements Game {
 
     private static int getCountOfEmpties(int[][] mapFile) {
         int countOfEmpties = 0;
-        for (int i = 0; i < mapFile.length; i++) {
-            for (int j = 0; j < mapFile[i].length; j++) {
-                if (mapFile[i][j] == 0) {
+        for (int[] ints : mapFile) {
+            for (int anInt : ints) {
+                if (anInt == 0) {
                     countOfEmpties++;
                 }
             }
