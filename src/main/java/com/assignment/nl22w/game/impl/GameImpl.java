@@ -17,6 +17,9 @@ public class GameImpl implements Game {
 
         int[] xCoordinates = findX(myResource.getMapFile());
 
+        char[][] updatedMap = updateMapCharacters(myResource.getMapFile());
+        myResource.setMapFile(updatedMap);
+
 
         //		TODO start your journey here
 
@@ -37,5 +40,19 @@ public class GameImpl implements Game {
         }
 
         return new int[]{x, y};
+    }
+
+    private char[][] updateMapCharacters(char[][] mapFile) {
+        for (int i = 0; i < mapFile.length; i++) {
+            for (int j = 0; j < mapFile[i].length; j++) {
+                if (mapFile[i][j] == '1') {
+                    mapFile[i][j] = 'B';
+                }
+                if (mapFile[i][j] == 'X') {
+                    mapFile[i][j] = '0';
+                }
+            }
+        }
+        return mapFile;
     }
 }
