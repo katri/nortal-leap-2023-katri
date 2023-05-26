@@ -22,42 +22,43 @@ public class MyResource implements Resource {
     }
 
     public int[][] readFile() {
-        File file = new File("src/main/resources/map2.txt");
+        char[][] map = new char[11000][];
+        int n = 0;
 
-        Scanner scanner;
         try {
-            scanner = new Scanner(file);
-            char[][] map = new char[1000][];
-            int n = 0;
+            File file = new File("src/main/resources/ee.txt");
+
+            Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 map[n] = line.toCharArray();
                 n++;
             }
             scanner.close();
-
-            int[][] newMap = new int[n][];
-            for (int i = 0; i < newMap.length; i++) {
-                newMap[i] = new int[map[i].length];
-                for (int j = 0; j < map[i].length; j++) {
-                    newMap[i][j] = 0;
-                }
-            }
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < map[i].length; j++) {
-                    if (map[i][j] == '1') {
-                        newMap[i][j] = -1;
-                    }
-                    if (map[i][j] == 'X') {
-                        newMap[i][j] = 1;
-                    }
-                }
-            }
-            return newMap;
-
-        } catch (FileNotFoundException ex) {
-            throw new RuntimeException(ex);
+        } catch (FileNotFoundException exception) {
+            throw new RuntimeException(exception);
         }
+
+        int[][] newMap = new int[n][];
+        for (int i = 0; i < newMap.length; i++) {
+            newMap[i] = new int[map[i].length];
+            for (int j = 0; j < map[i].length; j++) {
+                newMap[i][j] = 0;
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < map[i].length; j++) {
+                if (map[i][j] == '1') {
+                    newMap[i][j] = -1;
+                }
+                if (map[i][j] == 'X') {
+                    newMap[i][j] = 1;
+                }
+            }
+        }
+        return newMap;
+
+
     }
 
     @Override

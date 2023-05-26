@@ -12,11 +12,13 @@ import java.io.IOException;
 public class GameController {
     @GetMapping("new")
     public int getOutOfTheWoods() throws IOException {
-        Game game = new GameImpl();
-
-        MyResource resource = new MyResource();
-        resource.setMapFile();
-
-        return game.escapeFromTheWoods(resource);
+        try {
+            Game game = new GameImpl();
+            MyResource resource = new MyResource();
+            resource.setMapFile();
+            return game.escapeFromTheWoods(resource);
+        } catch (RuntimeException exception) {
+            return 0;
+        }
     }
 }
