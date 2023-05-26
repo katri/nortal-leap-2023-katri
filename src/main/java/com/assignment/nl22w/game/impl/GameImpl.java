@@ -17,6 +17,7 @@ public class GameImpl implements Game {
 
         int[] xCoordinates = findX(myResource.getMapFile());
 
+
         //		TODO start your journey here
 
         return -1;
