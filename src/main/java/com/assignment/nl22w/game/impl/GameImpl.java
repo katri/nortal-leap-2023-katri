@@ -96,8 +96,8 @@ public class GameImpl implements Game {
 
             for (int i = 0; i < mapFile.length; i++) {
                 for (int j = 0; j < mapFile[i].length; j++) {
-                    int ourCharValue = mapFile[i][j];
-                    if (ourCharValue == value
+                    int selectedInt = mapFile[i][j];
+                    if (selectedInt == value
                             && 0 < i && i < mapFile.length - 1
                             && 0 < j && j < mapFile[i].length - 1) {
                         if (mapFile[i - 1][j] == 0) {

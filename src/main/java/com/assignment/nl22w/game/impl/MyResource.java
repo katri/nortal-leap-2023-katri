@@ -26,7 +26,7 @@ public class MyResource implements Resource {
         int n = 0;
 
         try {
-            File file = new File("src/main/resources/ee.txt");
+            File file = new File("src/main/resources/map1.txt");
 
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
@@ -57,7 +57,6 @@ public class MyResource implements Resource {
             }
         }
         return newMap;
-
 
     }
 
