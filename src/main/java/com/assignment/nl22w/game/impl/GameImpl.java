@@ -15,9 +15,9 @@ public class GameImpl implements Game {
     public int escapeFromTheWoods(Resource resource) throws IOException {
         MyResource myResource = (MyResource) resource;
 
-        char[][] map = myResource.readFile();
+//        char[][] map = myResource.readFile();
 
-        int[] xCoordinates = findX(map);
+        int[] xCoordinates = findX(myResource.getMapFile());
 
 
 //		System.out.println(-1);
