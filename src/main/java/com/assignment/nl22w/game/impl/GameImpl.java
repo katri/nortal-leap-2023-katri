@@ -15,10 +15,11 @@ public class GameImpl implements Game {
     public int escapeFromTheWoods(Resource resource) throws IOException {
         MyResource myResource = (MyResource) resource;
 
-        int[] xCoordinates = findX(myResource.getMapFile());
 
         char[][] updatedMap = updateMapCharacters(myResource.getMapFile());
         myResource.setMapFile(updatedMap);
+
+        char[][] filledMap = fillMap(updatedMap);
 
 
         //		TODO start your journey here
@@ -26,13 +27,13 @@ public class GameImpl implements Game {
         return -1;
     }
 
-    private int[] findX(char[][] map) {
+    private int[] findStart(char[][] map) {
         int x = 0;
         int y = 0;
 
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[i].length; j++) {
-                if (map[i][j] == 'X') {
+                if (map[i][j] == '0') {
                     x = i;
                     y = j;
                 }
@@ -51,8 +52,72 @@ public class GameImpl implements Game {
                 if (mapFile[i][j] == 'X') {
                     mapFile[i][j] = '0';
                 }
+
+
             }
         }
         return mapFile;
     }
+
+    private char[][] fillMap(char[][] mapFile) {
+        int[] startCoordinates = findStart(mapFile);
+        int iValue = startCoordinates[0];
+        int jValue = startCoordinates[1];
+        int value = Character.getNumericValue(mapFile[iValue][jValue]);
+
+        int countOfEmpties = 0;
+        for (int i = 0; i < mapFile.length ; i++) {
+            for (int j = 0; j <mapFile[i].length ; j++) {
+                if (mapFile[i][j] == 32) {
+                    countOfEmpties++;
+                }
+            }
+        }
+
+        while (countOfEmpties > 0) {
+
+            for (int i = 0; i < mapFile.length; i++) {
+                for (int j = 0; j < mapFile[i].length; j++) {
+                    int ourCharValue = Character.getNumericValue(mapFile[i][j]);
+                    if (ourCharValue == value
+                            && 0 < i && i < mapFile.length
+                            && 0 < j && j < mapFile[i].length) {
+                        if (mapFile[i - 1][j] == 32) {
+                            mapFile[i - 1][j] = Character.forDigit(value+1, 10);
+                        }
+                        if (mapFile[i + 1][j] == 32) {
+                            mapFile[i + 1][j] = Character.forDigit(value+1, 10);
+                        }
+                        if (mapFile[i][j - 1] == 32) {
+                            mapFile[i][j - 1] = Character.forDigit(value+1, 10);
+                        }
+                        if (mapFile[i][j + 1] == 32) {
+                            mapFile[i][j + 1] = Character.forDigit(value+1, 10);
+                        }
+                    }
+                }
+            }
+            countOfEmpties = 0;
+            value++;
+
+            for (int i = 0; i < mapFile.length ; i++) {
+                for (int j = 0; j <mapFile[i].length ; j++) {
+                    if (mapFile[i][j] == 32) {
+                        countOfEmpties++;
+                    }
+                }
+            }
+        }
+
+
+//        fillLeft(mapFile[iValue - 1][jValue], value);
+//        fillRight(mapFile);
+//        fillTop(mapFile);
+//        fillBottom(mapFile);
+
+
+        return mapFile;
+    }
+
+
 }
