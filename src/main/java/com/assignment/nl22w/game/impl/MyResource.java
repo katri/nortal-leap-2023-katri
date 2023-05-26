@@ -12,35 +12,47 @@ import java.util.Scanner;
 
 public class MyResource implements Resource {
 
+    private int[][] mapFile;
 
-    private char[][] mapFile;
-    public char[][] getMapFile() {
+    public int[][] getMapFile() {
         return mapFile;
     }
 
-    public void setMapFile(char[][] mapFile) {
+    public void setMapFile(int[][] mapFile) {
         this.mapFile = readFile();
     }
 
-    public char[][] readFile() {
+    public int[][] readFile() {
         File file = new File("src/main/resources/map1.txt");
 
         Scanner scanner;
         try {
             scanner = new Scanner(file);
             char[][] map = new char[1000][];
-            int i = 0;
+            int n = 0;
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-
-                map[i] = line.toCharArray();
-                i++;
+                map[n] = line.toCharArray();
+                n++;
             }
             scanner.close();
 
-            char[][] newMap = new char[i][];
-            for (int j = 0; j < i; j++) {
-                newMap[j] = map[j];
+            int[][] newMap = new int[n][];
+            for (int i = 0; i < newMap.length; i++) {
+                newMap[i] = new int[map[i].length];
+                for (int j = 0; j < map[i].length; j++) {
+                    newMap[i][j] = 0;
+                }
+            }
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < map[i].length; j++) {
+                    if (map[i][j] == '1') {
+                        newMap[i][j] = -1;
+                    }
+                    if (map[i][j] == 'X') {
+                        newMap[i][j] = 1;
+                    }
+                }
             }
             return newMap;
 
