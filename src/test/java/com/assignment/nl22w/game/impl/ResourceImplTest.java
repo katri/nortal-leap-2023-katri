@@ -32,4 +32,29 @@ public class ResourceImplTest {
 
         assertFalse(isMapValid);
     }
+
+    @Test
+    void mapWith0Rows_mapIsValid() {
+        int nrOfInputRows = 0;
+        char[][] map = new char[nrOfInputRows][];
+
+        ResourceImpl resource = new ResourceImpl();
+        boolean isMapValid = resource.mapIsValid(map, nrOfInputRows);
+
+        assertFalse(isMapValid);
+    }
+
+    @Test
+    void mapWithNullRow_mapIsValid() {
+        int nrOfInputRows = 3;
+        char[][] map = new char[nrOfInputRows][];
+        map[0] = new char[]{'1', '1', '1'};
+        map[1] = null;
+        map[2] = new char[]{32, 'X', 'X'};
+
+        ResourceImpl resource = new ResourceImpl();
+        boolean isMapValid = resource.mapIsValid(map, nrOfInputRows);
+
+        assertFalse(isMapValid);
+    }
 }
