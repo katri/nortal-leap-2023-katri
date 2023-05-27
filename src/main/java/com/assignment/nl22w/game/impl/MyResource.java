@@ -39,25 +39,41 @@ public class MyResource implements Resource {
             throw new RuntimeException(exception);
         }
 
-        int[][] newMap = new int[n][];
-        for (int i = 0; i < newMap.length; i++) {
-            newMap[i] = new int[map[i].length];
-            for (int j = 0; j < map[i].length; j++) {
-                newMap[i][j] = 0;
+        if (mapIsValid(map, n)) {
+            int[][] newMap = new int[n][];
+            for (int i = 0; i < newMap.length; i++) {
+                newMap[i] = new int[map[i].length];
+                for (int j = 0; j < map[i].length; j++) {
+                    newMap[i][j] = 0;
+                }
             }
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < map[i].length; j++) {
+                    if (map[i][j] == '1') {
+                        newMap[i][j] = -1;
+                    }
+                    if (map[i][j] == 'X') {
+                        newMap[i][j] = 1;
+                    }
+                }
+            }
+            return newMap;
         }
+        return null;
+    }
+
+    private boolean mapIsValid(char[][] map, int n) {
+        boolean mapIsValid = true;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < map[i].length; j++) {
-                if (map[i][j] == '1') {
-                    newMap[i][j] = -1;
-                }
-                if (map[i][j] == 'X') {
-                    newMap[i][j] = 1;
+                if (map[i][j] == '1' || map[i][j] == 'X' || map[i][j] == 32) {
+                } else {
+                    mapIsValid = false;
+                    break;
                 }
             }
         }
-        return newMap;
-
+        return mapIsValid;
     }
 
     @Override
