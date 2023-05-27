@@ -23,7 +23,8 @@ public class MyResource implements Resource {
 
     public int[][] readFile() {
         char[][] map = new char[11000][];
-        int n = 0;
+        int
+                nrOfInputRows = 0;
 
         try {
             File file = new File("src/main/resources/map1.txt");
@@ -31,23 +32,23 @@ public class MyResource implements Resource {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                map[n] = line.toCharArray();
-                n++;
+                map[nrOfInputRows] = line.toCharArray();
+                nrOfInputRows++;
             }
             scanner.close();
         } catch (FileNotFoundException exception) {
             throw new RuntimeException(exception);
         }
 
-        if (mapIsValid(map, n)) {
-            int[][] newMap = new int[n][];
+        if (mapIsValid(map, nrOfInputRows)) {
+            int[][] newMap = new int[nrOfInputRows][];
             for (int i = 0; i < newMap.length; i++) {
                 newMap[i] = new int[map[i].length];
                 for (int j = 0; j < map[i].length; j++) {
                     newMap[i][j] = 0;
                 }
             }
-            for (int i = 0; i < n; i++) {
+            for (int i = 0; i < nrOfInputRows; i++) {
                 for (int j = 0; j < map[i].length; j++) {
                     if (map[i][j] == '1') {
                         newMap[i][j] = -1;
@@ -62,9 +63,9 @@ public class MyResource implements Resource {
         return null;
     }
 
-    private boolean mapIsValid(char[][] map, int n) {
+    private boolean mapIsValid(char[][] map, int nrOfInputRows) {
         boolean mapIsValid = true;
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < nrOfInputRows; i++) {
             for (int j = 0; j < map[i].length; j++) {
                 if (map[i][j] == '1' || map[i][j] == 'X' || map[i][j] == 32) {
                 } else {
