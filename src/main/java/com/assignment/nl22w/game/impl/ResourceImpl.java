@@ -63,7 +63,7 @@ public class ResourceImpl implements Resource {
         return null;
     }
 
-    private boolean mapIsValid(char[][] map, int nrOfInputRows) {
+    public boolean mapIsValid(char[][] map, int nrOfInputRows) {
         boolean mapIsValid = true;
         for (int i = 0; i < nrOfInputRows; i++) {
             for (int j = 0; j < map[i].length; j++) {
