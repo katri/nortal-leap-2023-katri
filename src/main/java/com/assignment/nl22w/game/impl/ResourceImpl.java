@@ -64,18 +64,16 @@ public class ResourceImpl implements Resource {
     }
 
     public boolean mapIsValid(char[][] map, int nrOfInputRows) {
-        boolean mapIsValid = true;
-        if (nrOfInputRows == 0) {
-            mapIsValid = false;
-        }
+        boolean mapIsValid = nrOfInputRows != 0;
 
         for (int i = 0; i < nrOfInputRows; i++) {
             if (map[i] == null) {
                 mapIsValid = false;
+                break;
             }
         }
 
-        if (mapIsValid == true) {
+        if (mapIsValid) {
             for (int i = 0; i < nrOfInputRows; i++) {
                 for (int j = 0; j < map[i].length; j++) {
                     if (map[i][j] == '1' || map[i][j] == 'X' || map[i][j] == 32) {
