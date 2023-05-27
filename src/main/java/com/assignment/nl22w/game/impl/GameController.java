@@ -14,7 +14,7 @@ public class GameController {
     public int getOutOfTheWoods() throws IOException {
         try {
             Game game = new GameImpl();
-            MyResource resource = new MyResource();
+            ResourceImpl resource = new ResourceImpl();
             resource.setMapFile();
             return game.escapeFromTheWoods(resource);
         } catch (RuntimeException exception) {

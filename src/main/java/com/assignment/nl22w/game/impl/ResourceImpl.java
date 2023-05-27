@@ -9,7 +9,7 @@ import java.net.URI;
 import java.net.URL;
 import java.util.Scanner;
 
-public class MyResource implements Resource {
+public class ResourceImpl implements Resource {
 
     private int[][] mapFile;
 
