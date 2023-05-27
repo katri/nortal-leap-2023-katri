@@ -27,7 +27,7 @@ public class ResourceImpl implements Resource {
                 nrOfInputRows = 0;
 
         try {
-            File file = new File("src/main/resources/map1.txt");
+            File file = new File("src/main/resources/map2.txt");
 
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {

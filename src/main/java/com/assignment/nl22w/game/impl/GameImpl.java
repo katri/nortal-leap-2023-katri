@@ -15,6 +15,8 @@ public class GameImpl implements Game {
     @Override
     public int escapeFromTheWoods(Resource resource) {
         ResourceImpl resourceImpl = (ResourceImpl) resource;
+        resourceImpl.setMapFile();
+
         int[][] updatedMap = resourceImpl.getMapFile();
 
         int[][] filledMap = fillMap(updatedMap);
